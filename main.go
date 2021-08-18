@@ -12,7 +12,14 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Print(absPath)
+	fmt.Println(absPath)
+	fmt.Println(os.Args[0])
+	p1, _ := filepath.EvalSymlinks(os.Args[0])
+	fmt.Println(p1)
+	p2, _ := filepath.Abs(p1)
+	fmt.Println(p2)
+	p3 := filepath.Dir(p2)
+	fmt.Println(p3)
 	os.Exit(0)
 }
 
