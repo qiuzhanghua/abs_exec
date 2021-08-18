@@ -13,21 +13,16 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(absPath)
-	fmt.Println(os.Args[0])
-	p1, _ := filepath.EvalSymlinks(os.Args[0])
-	fmt.Println(p1)
-	p2, _ := filepath.Abs(p1)
-	fmt.Println(p2)
-	p3 := filepath.Dir(p2)
-	fmt.Println(p3)
 	os.Exit(0)
 }
 
 func AbsPath() (string, error) {
-	execPath, err := os.Executable()
-	if err != nil {
-		return ".", err
-	}
+	// os.Executable() not work as expected
+	//execPath, err := os.Executable()
+	//if err != nil {
+	//	return ".", err
+	//}
+	execPath := os.Args[0]
 	absPath, err := filepath.EvalSymlinks(execPath)
 	//	absPath, err := filepath.EvalSymlinks(os.Args[0])
 	if err != nil {
