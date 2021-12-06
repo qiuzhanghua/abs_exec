@@ -22,7 +22,10 @@ func AbsPath() (string, error) {
 	//if err != nil {
 	//	return ".", err
 	//}
-	execPath := os.Args[0]
+	execPath, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
 	absPath, err := filepath.EvalSymlinks(execPath)
 	//	absPath, err := filepath.EvalSymlinks(os.Args[0])
 	if err != nil {
